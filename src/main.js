@@ -49,39 +49,9 @@ refs.queryForm.addEventListener('submit', event => {
       }
     })
     .catch(error => {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        iziToast.error({
-          message: `${error.response.data}`,
-          position: 'center',
-        });
-        iziToast.error({
-          message: `${error.response.status}`,
-          position: 'center',
-        });
-        iziToast.error({
-          message: `${error.response.headers}`,
-          position: 'center',
-        });
-      } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an instance of XMLHttpRequest in the browser
-        //  and an instance of http.ClientRequest in node.js
-        iziToast.error({
-          message: `${error.request}`,
-          position: 'center',
-        });
-      } else {
-        // Something happened in setting up the request
-        // that triggered an Error
-        iziToast.error({
-          message: `Error: ${error.message}`,
-          position: 'center',
-        });
-      }
+      refs.loader.classList.add('hidden');
       iziToast.error({
-        message: `${error.config}`,
+        message: `${error.message}`,
         position: 'center',
       });
     });
